@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/my-retro/static/css/main.6f1a798a.chunk.css",
+    "main.js": "/my-retro/static/js/main.99a33c83.chunk.js",
+    "main.js.map": "/my-retro/static/js/main.99a33c83.chunk.js.map",
+    "runtime-main.js": "/my-retro/static/js/runtime-main.602122c3.js",
+    "runtime-main.js.map": "/my-retro/static/js/runtime-main.602122c3.js.map",
+    "static/css/2.8ddd9e3d.chunk.css": "/my-retro/static/css/2.8ddd9e3d.chunk.css",
+    "static/js/2.ba68c307.chunk.js": "/my-retro/static/js/2.ba68c307.chunk.js",
+    "static/js/2.ba68c307.chunk.js.map": "/my-retro/static/js/2.ba68c307.chunk.js.map",
+    "static/js/3.57d8e1b6.chunk.js": "/my-retro/static/js/3.57d8e1b6.chunk.js",
+    "static/js/3.57d8e1b6.chunk.js.map": "/my-retro/static/js/3.57d8e1b6.chunk.js.map",
+    "index.html": "/my-retro/index.html",
+    "static/css/2.8ddd9e3d.chunk.css.map": "/my-retro/static/css/2.8ddd9e3d.chunk.css.map",
+    "static/css/main.6f1a798a.chunk.css.map": "/my-retro/static/css/main.6f1a798a.chunk.css.map",
+    "static/js/2.ba68c307.chunk.js.LICENSE.txt": "/my-retro/static/js/2.ba68c307.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.602122c3.js",
+    "static/css/2.8ddd9e3d.chunk.css",
+    "static/js/2.ba68c307.chunk.js",
+    "static/css/main.6f1a798a.chunk.css",
+    "static/js/main.99a33c83.chunk.js"
+  ]
+}
