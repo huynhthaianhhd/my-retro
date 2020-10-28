@@ -13,10 +13,10 @@ function App() {
         <Router>
         <Switch>
           <Route path="/" exact>
-            <LoginPage />
+            <HomePage />
           </Route>
-          <Route path="/home" exact component={HomePage}>
-          </Route>
+          {/* <Route path="/home" exact component={HomePage}>
+          </Route> */}
         </Switch>
         </Router>
       </div>
