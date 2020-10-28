@@ -1,0 +1,27 @@
+.header{
+    height: 54.4px;
+    background-color: rgb(33, 150, 243);
+    padding-left: 15px;
+    color: white;
+    font-family: 'Lobster', cursive;
+
+}
+.logo{
+    cursor: pointer;
+    font-size: 35px;
+}
+.inf-avt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+p{
+    margin: 0;
+    font-size: 15px;
+    padding-left: 10px;
+}
+.avt{
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+}
