@@ -7,11 +7,12 @@ import Content from "../../components/Content";
 import axios from 'axios'
 
 function HomePage() {
+  const URL = process.env.URL;
   const [boardList, setBoardList] = useState([]);
   useEffect(() => {
     axios({
       method: 'get',
-      url: 'http://localhost:4000/board',
+      url: URL,
     })
       .then(function (response) {
         setBoardList(response.data);
