@@ -1,0 +1,58 @@
+.tag-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px auto;
+    color: #fff;
+    padding: 16px;
+    border-radius: 5px;
+    width: 90%;
+}
+.board-name-text{
+    margin-top: 10px;
+    margin-left: 50px;
+    font-size: 24px;
+}
+.type-went-well{
+    background-color: forestgreen;
+}
+.type-improve{
+    background-color: crimson;
+}
+.type-action{
+    background-color: darkorchid;
+}
+.column-item{
+    display: flex;
+    align-items: center;
+    margin: 4px auto;
+    padding: 16px;
+    border-radius: 5px;
+    width: 90%;
+    font-weight: bold;
+}
+.icon-column{
+    margin-right: 10px;
+    font-size: 20px;
+}
+.icons {
+    display: flex;
+    font-size: 20px;
+    cursor: pointer;
+}
+.delete-icon {
+    color: #fff;
+  }
+  
+.edit-icon {
+    margin-right: 10px;
+    color: #fff;
+  }
+.add-btn{
+    display: flex;
+    margin: 4px auto;
+    justify-content: center;
+    border-radius: 5px;
+    width: 90%;
+    background-color:whitesmoke;
+}

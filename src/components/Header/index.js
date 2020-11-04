@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Row, Col } from "antd";
+import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./index.css";
 import { Avatar } from "antd";
 function Header() {
+  let history = useHistory();
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
       <Row className="header">
         <Col span={20}>
@@ -12,11 +15,17 @@ function Header() {
           </div>
         </Col>
         <Col span={4} className='inf-avt'>
-            <Avatar
+        {user &&
+        <>
+           <Avatar
               className="avt"
               src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
             />
-            <p>Huynh Thai Anh</p>
+            <p>{user.name} |</p>
+            <p onClick={()=>{localStorage.removeItem('user'); history.push('/')}}>Log out</p>
+        </>
+      }
+           
         </Col>
       </Row>
   );

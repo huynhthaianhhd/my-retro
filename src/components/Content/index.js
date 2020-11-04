@@ -1,26 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { Breadcrumb, Badge } from "antd";
 import { Button, Tooltip, Row, Col, Card } from "antd";
-import { PlusOutlined, FieldTimeOutlined } from "@ant-design/icons";
+import {  notification } from 'antd';
+import {
+  PlusOutlined,
+  FieldTimeOutlined,
+  EditOutlined,
+  CloseCircleOutlined,
+  CopyOutlined,
+} from "@ant-design/icons";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 import "./index.css";
-function Content({ boardList }) {
+import ModalAddBoard from "../ModalAdd";
+import ModalEditBoard from "../ModalEdit";
+function Content({
+  boardList,
+  handleAddBoard,
+  handleEditBoard,
+  handleDeleteBoard,
+}) {
+  let history = useHistory();
+  const [visible, setVisible] = useState(false);
+  const [visibleEdit, setVisibleEdit] = useState(false);
+  const [itemCurrent, setItemCurrent] = useState({});
+  const showModal = () => {
+    setVisible(true);
+  };
+  const showModalEdit = (e) => {
+    console.log("name", e);
+    setVisibleEdit(true);
+    setItemCurrent(e);
+  };
+
+  const handleOk = (e) => {
+    handleAddBoard(e);
+    setVisible(false);
+  };
+
+  const handleCancel = (e) => {
+    console.log(e);
+    setVisible(false);
+    setVisibleEdit(false);
+  };
+  const handleOkEdit = (e) => {
+    handleEditBoard(e, itemCurrent.id);
+    setVisibleEdit(false);
+  };
+  const deleteBoard = (e) => {
+    handleDeleteBoard(e.id);
+  };
   return (
     <div className="content">
-      <div>
-        <Breadcrumb className="breadcrumb">
-          <Breadcrumb.Item>
-            <a href="">Application Center</a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a href="">Application Center</a>
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>
-            <a href="">Application Center</a>
-          </Breadcrumb.Item>
-        </Breadcrumb>
-      </div>
       <div>
         <p className="text-myboard">My Board</p>
       </div>
@@ -29,35 +61,63 @@ function Content({ boardList }) {
           <Col span={5} style={{ padding: "15px" }}>
             <div className="box-add">
               <Tooltip title="Add Board">
-                <Button type="primary" shape="circle" icon={<PlusOutlined />} />
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<PlusOutlined />}
+                  onClick={showModal}
+                />
               </Tooltip>
             </div>
           </Col>
+          <ModalAddBoard
+            visible={visible}
+            handleCancel={handleCancel}
+            handleOk={handleOk}
+          />
+          <ModalEditBoard
+            oldName={itemCurrent.boardname}
+            visible={visibleEdit}
+            handleCancel={handleCancel}
+            handleOkEdit={handleOkEdit}
+          />
           {boardList.map((item) => {
             return (
               <Col span={5} key={item.id} style={{ padding: "15px" }}>
-                <div className="board-user">
-                  <Card title={item.boardname} bordered={true}>
+                <div
+                  className="board-user"
+                >
+                  <Card title={item.boardname} bordered={true} onClick={() =>
+                    history.push({
+                      pathname: `/board/${item.id}`,
+                    })
+                  }>
                     <FieldTimeOutlined />{" "}
                     {moment(item.created).format("YYYY/MM/DD")}
-                    <div>
-                      <Badge
-                        className="site-badge-count"
-                        count={1}
-                        style={{ backgroundColor: "#00FF00" }}
-                      />
-                      <Badge
-                        className="site-badge-count"
-                        count={1}
-                        style={{ backgroundColor: "#FF0000" }}
-                      />
-                      <Badge
-                        className="site-badge-count-4"
-                        count={1}
-                        style={{ backgroundColor: "#FF00FF" }}
-                      />
-                    </div>
                   </Card>
+                  <div className="icons-board">
+                    <EditOutlined
+                      onClick={() => {
+                        showModalEdit(item);
+                      }}
+                      className="edit-icon-board"
+                    />
+                    <CloseCircleOutlined
+                      onClick={() => {
+                        deleteBoard(item);
+                      }}
+                      className="delete-icon-board"
+                    />
+                    <CopyOutlined 
+                      onClick={() => {
+                        notification.open({
+                          message: 'URL Share',
+                          description:
+                            `http://localhost:3000/board/${item.id}`,
+                        });
+                      }}
+                    />
+                  </div>
                 </div>
               </Col>
             );

@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import LoginPage from './containers/LoginPage';
 import HomePage from './containers/HomePage'
+import ColumnPage from './containers/ColumnPage';
 
 function App() {
   return (
@@ -13,10 +14,13 @@ function App() {
         <Router>
         <Switch>
           <Route path="/" exact>
-            <HomePage />
+            <LoginPage />
           </Route>
-          {/* <Route path="/home" exact component={HomePage}>
-          </Route> */}
+          <Route path="/board/:id" exact component={ColumnPage}>
+          </Route>
+          <Route path="/home" exact>
+            <HomePage/>
+          </Route>
         </Switch>
         </Router>
       </div>

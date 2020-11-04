@@ -7,7 +7,6 @@
     font-size: 18px; 
 }
 .text-myboard{
-    padding-top: 50px;
     padding-left: 50px;
     font-size: 28px;
 }
@@ -21,11 +20,26 @@
     border-radius: 2px;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 150px;
 }
 .board-user{
-    border: 2px solid rgb(33, 150, 243) ;
+    border: 1px solid rgb(33, 150, 243) ;
+    height: auto;
 }
 .badge{
     text-align: justify;
 }
+.icons-board {
+    display: flex;
+    font-size: 20px;
+    justify-content: flex-end;;
+    cursor: pointer;
+}
+.delete-icon-board {
+    margin-right: 10px;
+    color: rgb(33, 150, 243);
+  }
+.edit-icon-board {
+    margin-right: 10px;
+    color: rgb(33, 150, 243);
+  }
