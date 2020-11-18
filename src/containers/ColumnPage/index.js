@@ -4,7 +4,9 @@ import ContentColumn from "../../components/ContentColumn";
 import { Layout, Menu, Breadcrumb, message } from "antd";
 import Header from "../../components/Header";
 import { useLocation } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
+import socket from '../../socket';
 import "./index.css";
 const URL = "http://localhost:4000";
 function ColumnPage({ match }) {
@@ -15,6 +17,10 @@ function ColumnPage({ match }) {
   const [nameBoard, setNameBoard] = useState('')
   const [effect, setEffect] = useState(false);
   useEffect(() => {
+    socket.on('msgToClient', res => {setEffect(!effect); }); 
+  });
+  useEffect(() => {
+    console.log('aaaaaaaa')
     const fetchData = async () => {
         await axios({
             method: "get",
@@ -61,12 +67,14 @@ function ColumnPage({ match }) {
       method: "post",
       url: `${URL}/tag/create`,
       data: {
+        id: uuidv4(),
         tagname: e.tagname,
         columnId: e.id,
       },
     }).then(function (response) {
       setEffect(!effect);
     });
+    socket.emit('msgToServer', 'OKKKKKKKKK');
   };
   const handleEditTag = (e) => {
     axios({
@@ -79,7 +87,11 @@ function ColumnPage({ match }) {
     }).then(function (response) {
       setEffect(!effect);
     });
+    socket.emit('msgToServer', 'OKKKKKKKKK');
   };
+  const setEffectPage=()=>{
+    setEffect(!effect);
+  }
   const handleDeleteTag = (e) => {
     axios({
       method: "post",
@@ -92,12 +104,13 @@ function ColumnPage({ match }) {
       message.success('Delete Success!');
       setEffect(!effect);
     });
+    socket.emit('msgToServer', 'OKKKKKKKKK');
   };
-  console.log('bbbbbbbb',tagListWentWell);
   return (
     <div className="column-page">
       <Header />
       <ContentColumn
+        setEffectPage={setEffectPage}
         boardName = {nameBoard}
         tagListWentWell={tagListWentWell}
         tagListImprove={tagListImprove}

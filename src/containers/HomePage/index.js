@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Menu, Breadcrumb, message } from "antd";
+import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from "react-router-dom";
 import "./index.css";
 import "antd/dist/antd.css";
@@ -18,12 +19,13 @@ function HomePage(props) {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `${URL}/board?userId=${user.id}`,
+        url: `${URL}/board/user/${user.id}`,
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       }).then(function (response) {
         const data = response.data;
+        console.log({data});
         if (data.boards)
         {
           setBoardList(response.data.boards);
@@ -48,6 +50,7 @@ function HomePage(props) {
       method: "post",
       url: `${URL}/board/create`,
       data: {
+        id: uuidv4(),
         boardname: e,
         userId: user.id,
       },
